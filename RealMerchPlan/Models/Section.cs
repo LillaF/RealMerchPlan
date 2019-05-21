@@ -10,6 +10,7 @@ namespace RealMerchPlan.Models
     {
         [Key]
         public int SectionID { get; set; }
+        //[Key]
         [Required, StringLength(50)]
         public string Name { get; set; }
         [Required]

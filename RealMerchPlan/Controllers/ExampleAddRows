@@ -1,0 +1,95 @@
+﻿        [HttpPost]
+        public ActionResult CreateBays()
+        {
+				int ssectionID = dbo.Section.SectionID
+				string sname = dbo.Section.Name
+				decimal sheight = dbo.Section.Height
+				decimal swidth = dbo.Section.Width
+				decimal sdepth = dbo.Section.Depth
+				int numOfBays = dbo.Section.NumOfBays
+
+                //Create a DataTable.
+                DataTable dt = new DataTable();
+                dt.Columns.AddRange(
+                                new DataColumn[7] {
+                                new DataColumn("BayID", typeof(int)),
+								new DataColumn("SectionID", typeof(int)),                                
+                                new DataColumn("BayName", typeof(string)),    
+								new DataColumn("Height",typeof(decimal)),
+								new DataColumn("Width",typeof(decimal)),
+                                new DataColumn("Depth",typeof(decimal)),
+                                new DataColumn("XLocation",typeof(decimal)),
+                                new DataColumn("YLocation", typeof(decimal)),
+                                new DataColumn("NumOfFix",typeof(int)),
+								});
+
+								// /add data to dt
+
+								for (int i = 0; i < numOfBays; i++)
+								{
+									DataRow dr = dt.NewRow();//create a new row based on the existing "row model"
+									dr["SectionName"] = sname;
+									dr["ItemValue"] = "Item" + i + "Value";
+									dr["Blah"] = "Item" + i + "Blah";
+									dr["Bleh"] = "Item" + i + "Bleh";
+									dt.Rows.Add(dr);//add the row to the DataTable
+        }
+
+
+                string conString = ConfigurationManager.ConnectionStrings["RealMerchContext"].ConnectionString;
+
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
+                    {
+                        //Set the database table name.
+                        sqlBulkCopy.DestinationTableName = "dbo.Bay";
+
+                        //[OPTIONAL]: Map the DataTable columns with that of the database table
+                        sqlBulkCopy.ColumnMappings.Add("Id", "UPC");
+                        sqlBulkCopy.ColumnMappings.Add("Name", "Name");
+                        sqlBulkCopy.ColumnMappings.Add("Size", "Size");
+                        sqlBulkCopy.ColumnMappings.Add("Height", "Height");
+                        sqlBulkCopy.ColumnMappings.Add("Width", "Width");
+                        sqlBulkCopy.ColumnMappings.Add("Depth", "Depth");
+                        con.Open();
+                        sqlBulkCopy.WriteToServer(dt);
+                        con.Close();
+                    }
+                }
+            }
+
+            return View();
+        }
+
+
+
+
+
+		FROM INTERNET
+
+		   private void AddDataToDGV()
+    {
+        DataTable dt = new DataTable();
+        //create some columns for the datatable
+        DataColumn dc = new DataColumn("ItemName");
+        DataColumn dc2 = new DataColumn("ItemValue");
+        DataColumn dc3 = new DataColumn("Blah");
+        DataColumn dc4 = new DataColumn("Bleh");
+        //add the columns to the datatable
+        dt.Columns.Add(dc);
+        dt.Columns.Add(dc2);
+        dt.Columns.Add(dc3);
+        dt.Columns.Add(dc4);
+
+        //create 5 rows of irrelevant information
+        //this is the actual answer to your question
+        for (int i = 0; i < 5; i++)
+        {
+            DataRow dr = dt.NewRow();//create a new row based on the existing "row model"
+            dr["ItemName"] = "Item" + i + "Name";
+            dr["ItemValue"] = "Item" + i + "Value";
+            dr["Blah"] = "Item" + i + "Blah";
+            dr["Bleh"] = "Item" + i + "Bleh";
+            dt.Rows.Add(dr);//add the row to the DataTable
+        }

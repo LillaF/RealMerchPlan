@@ -62,6 +62,38 @@ namespace RealMerchPlan.Controllers
             return View(bay);
         }
 
+
+
+        // GET: Bay/CreateBays
+        public ActionResult CreateBays()
+        {
+            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "Name");
+            return View();
+        }
+
+        // POST: Bay/CreateBays
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateBays([Bind(Include = "BayID,SectionID,BayName,Height,Width,Depth,XLocation,YLocation,NumOfFix")] Bay bay)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Bays.Add(bay);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "Name", bay.SectionID);
+            return View(bay);
+        }
+
+
+
+
+
+
         // GET: Bay/Edit/5
         public ActionResult Edit(int? id)
         {
