@@ -9,7 +9,9 @@ namespace RealMerchPlan.Models
     public class Product
     {
         [Key]
-        public int UPC { get; set; }
+        public int ProductId { get; set; }
+        [Required]
+        public string UPC { get; set; }
         [Required, StringLength(50)]
         public string Name { get; set; }
         public string Size { get; set; }
@@ -20,7 +22,7 @@ namespace RealMerchPlan.Models
         [Required]
         public double Depth { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<Position> Positions { get; set; }
+        public virtual UPCScan UPCScan { get; set; }
     }
 }

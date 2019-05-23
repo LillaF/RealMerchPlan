@@ -23,5 +23,7 @@ namespace RealMerchPlan.DAL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
         }
+
+        public System.Data.Entity.DbSet<RealMerchPlan.Models.UPCScan> UPCScans { get; set; }
     }
 }

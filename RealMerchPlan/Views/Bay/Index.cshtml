@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Bay Details</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Section.Name)
+            @Html.DisplayNameFor(model => model.Section.SectionName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BayName)
@@ -42,7 +42,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Section.Name)
+            @Html.DisplayFor(modelItem => item.Section.SectionName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BayName)

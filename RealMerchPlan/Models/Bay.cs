@@ -8,10 +8,10 @@ namespace RealMerchPlan.Models
 {
     public class Bay
     {
-        [Key]
-        public int BayID { get; set; }
         [Required]
         public int SectionID { get; set; }
+        [Key]
+        public int BayID { get; set; }
         [Required]
         public int BayName { get; set; }
         [Required]
@@ -24,8 +24,9 @@ namespace RealMerchPlan.Models
         public double XLocation { get; set; }
         [Required]
         public double YLocation { get; set; }
-        //[Required]
+        [Required]
         public int NumOfFix { get; set; }
+    
         
         public virtual Section Section { get; set; }
         public virtual ICollection<Fixture> Fixtures { get; set; }

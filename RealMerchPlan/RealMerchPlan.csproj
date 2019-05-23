@@ -173,14 +173,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BayController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FixtureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="DAL\RealMerchContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,7 +192,9 @@
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Section.cs" />
+    <Compile Include="Models\UPCScan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +220,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -263,11 +266,6 @@
     <Content Include="Views\Bay\Details.cshtml" />
     <Content Include="Views\Bay\Edit.cshtml" />
     <Content Include="Views\Bay\Index.cshtml" />
-    <Content Include="Views\Fixture\Create.cshtml" />
-    <Content Include="Views\Fixture\Delete.cshtml" />
-    <Content Include="Views\Fixture\Details.cshtml" />
-    <Content Include="Views\Fixture\Edit.cshtml" />
-    <Content Include="Views\Fixture\Index.cshtml" />
     <Content Include="Views\Position\Create.cshtml" />
     <Content Include="Views\Position\Delete.cshtml" />
     <Content Include="Views\Position\Details.cshtml" />
@@ -278,6 +276,11 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Fixture\Create.cshtml" />
+    <Content Include="Views\Fixture\Delete.cshtml" />
+    <Content Include="Views\Fixture\Details.cshtml" />
+    <Content Include="Views\Fixture\Edit.cshtml" />
+    <Content Include="Views\Fixture\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,7 +18,7 @@ namespace RealMerchPlan.Controllers
         // GET: Position
         public ActionResult Index()
         {
-            var positions = db.Positions.Include(p => p.Fixture).Include(p => p.Product);
+            var positions = db.Positions.Include(p => p.Fixture).Include(p => p.UPCScan);
             return View(positions.ToList());
         }
 
@@ -41,7 +41,7 @@ namespace RealMerchPlan.Controllers
         public ActionResult Create()
         {
             ViewBag.FixtureId = new SelectList(db.Fixtures, "FixtureID", "FixtureID");
-            ViewBag.UPC = new SelectList(db.Products, "UPC", "Name");
+            ViewBag.UPCId = new SelectList(db.UPCScans, "UPCId", "UPCId");
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace RealMerchPlan.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PositionID,FixtureId,UPC,XLocation,YLocation")] Position position)
+        public ActionResult Create([Bind(Include = "PositionID,FixtureId,UPCId,XLocation,YLocation")] Position position)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +60,7 @@ namespace RealMerchPlan.Controllers
             }
 
             ViewBag.FixtureId = new SelectList(db.Fixtures, "FixtureID", "FixtureID", position.FixtureId);
-            ViewBag.UPC = new SelectList(db.Products, "UPC", "Name", position.UPC);
+            ViewBag.UPCId = new SelectList(db.UPCScans, "UPCId", "UPCId", position.UPCId);
             return View(position);
         }
 
@@ -77,7 +77,7 @@ namespace RealMerchPlan.Controllers
                 return HttpNotFound();
             }
             ViewBag.FixtureId = new SelectList(db.Fixtures, "FixtureID", "FixtureID", position.FixtureId);
-            ViewBag.UPC = new SelectList(db.Products, "UPC", "Name", position.UPC);
+            ViewBag.UPCId = new SelectList(db.UPCScans, "UPCId", "UPCId", position.UPCId);
             return View(position);
         }
 
@@ -86,7 +86,7 @@ namespace RealMerchPlan.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PositionID,FixtureId,UPC,XLocation,YLocation")] Position position)
+        public ActionResult Edit([Bind(Include = "PositionID,FixtureId,UPCId,XLocation,YLocation")] Position position)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace RealMerchPlan.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.FixtureId = new SelectList(db.Fixtures, "FixtureID", "FixtureID", position.FixtureId);
-            ViewBag.UPC = new SelectList(db.Products, "UPC", "Name", position.UPC);
+            ViewBag.UPCId = new SelectList(db.UPCScans, "UPCId", "UPCId", position.UPCId);
             return View(position);
         }
 

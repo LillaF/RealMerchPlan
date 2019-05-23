@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using RealMerchPlan.DAL;
 using RealMerchPlan.Models;
 
-namespace RealMerchPlan.Controllers
+namespace RealMerchPlan
 {
     public class BayController : Controller
     {
@@ -40,7 +40,7 @@ namespace RealMerchPlan.Controllers
         // GET: Bay/Create
         public ActionResult Create()
         {
-            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "Name");
+            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "SectionName");
             return View();
         }
 
@@ -58,41 +58,9 @@ namespace RealMerchPlan.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "Name", bay.SectionID);
+            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "SectionName", bay.SectionID);
             return View(bay);
         }
-
-
-
-        // GET: Bay/CreateBays
-        public ActionResult CreateBays()
-        {
-            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "Name");
-            return View();
-        }
-
-        // POST: Bay/CreateBays
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateBays([Bind(Include = "BayID,SectionID,BayName,Height,Width,Depth,XLocation,YLocation,NumOfFix")] Bay bay)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Bays.Add(bay);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "Name", bay.SectionID);
-            return View(bay);
-        }
-
-
-
-
-
 
         // GET: Bay/Edit/5
         public ActionResult Edit(int? id)
@@ -106,7 +74,7 @@ namespace RealMerchPlan.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "Name", bay.SectionID);
+            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "SectionName", bay.SectionID);
             return View(bay);
         }
 
@@ -123,7 +91,7 @@ namespace RealMerchPlan.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "Name", bay.SectionID);
+            ViewBag.SectionID = new SelectList(db.Sections, "SectionID", "SectionName", bay.SectionID);
             return View(bay);
         }
 

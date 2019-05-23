@@ -35,8 +35,9 @@ namespace RealMerchPlan.Controllers
                 //Create a DataTable.
                 DataTable dt = new DataTable();
                 dt.Columns.AddRange(
-                                new DataColumn[6] {
+                                new DataColumn[7] {
                                 new DataColumn("Id", typeof(string)),
+                                new DataColumn("UPC", typeof(string)),
                                 new DataColumn("Name", typeof(string)),
                                 new DataColumn("Size",typeof(string)),
                                 new DataColumn("Height",typeof(decimal)),
@@ -74,7 +75,8 @@ namespace RealMerchPlan.Controllers
                         sqlBulkCopy.DestinationTableName = "dbo.Product";
 
                         //[OPTIONAL]: Map the DataTable columns with that of the database table
-                        sqlBulkCopy.ColumnMappings.Add("Id", "UPC");
+                        sqlBulkCopy.ColumnMappings.Add("Id", "ProductId");
+                        sqlBulkCopy.ColumnMappings.Add("UPC", "UPC");
                         sqlBulkCopy.ColumnMappings.Add("Name", "Name");
                         sqlBulkCopy.ColumnMappings.Add("Size", "Size");
                         sqlBulkCopy.ColumnMappings.Add("Height", "Height");
@@ -85,7 +87,7 @@ namespace RealMerchPlan.Controllers
                         con.Close();
                     }
                 }
-            }
+            }        
 
             return View();
         }

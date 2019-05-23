@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using RealMerchPlan.DAL;
 using RealMerchPlan.Models;
 
-namespace RealMerchPlan.Controllers
+namespace RealMerchPlan
 {
     public class SectionController : Controller
     {
@@ -47,7 +47,7 @@ namespace RealMerchPlan.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SectionID,Name,Department,MerchGroup,Height,Width,Depth,NumOfBays")] Section section)
+        public ActionResult Create([Bind(Include = "SectionID,SectionName,Department,MerchGroup,Height,Width,Depth,NumOfBays,StartDate")] Section section)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace RealMerchPlan.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SectionID,Name,Department,MerchGroup,Height,Width,Depth,NumOfBays")] Section section)
+        public ActionResult Edit([Bind(Include = "SectionID,SectionName,Department,MerchGroup,Height,Width,Depth,NumOfBays,StartDate")] Section section)
         {
             if (ModelState.IsValid)
             {
@@ -125,7 +125,4 @@ namespace RealMerchPlan.Controllers
             base.Dispose(disposing);
         }
     }
-
-
-
 }

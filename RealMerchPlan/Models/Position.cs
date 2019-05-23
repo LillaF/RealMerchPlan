@@ -13,13 +13,13 @@ namespace RealMerchPlan.Models
         [Required]
         public int FixtureId { get; set; }
         [Required]
-        public int UPC { get; set; }
+        public int UPCId { get; set; }
         [Required]
         public double XLocation { get; set; }
         [Required]
         public double YLocation { get; set; }
 
-        public virtual Product Product { get; set; }
+        public virtual UPCScan UPCScan { get; set; }
         public virtual Fixture Fixture { get; set; }
 
     }
